@@ -2,9 +2,15 @@
 // ej:
 // producto([1, 2, 5]) devuelve 10
 // producto([7, 2, 5]) devuelve 70
-const producto = function (array) {
-  //escribe aqui tu codigo
-  
+const producto = function (array, count = 1) {
+  //escribe aqui tu codigo  
+  if (array.length > 0) {
+
+  		count *= array[0];
+  		array.shift();
+  		return producto(array, count);
+  };
+  return count;
 };
 
 // Dado un objeto con objetos anidados utilizar la recursión para crear una función
@@ -24,5 +30,25 @@ const producto = function (array) {
 // }
 const isThere = function (obj, value) {
   //escribe aqui tu codigo
+
+  let sol = [];
+  
+  let current = obj;
+   	
+  for (let key in current) {
+  	 if (typeof current[key] == 'object'){
+  	  			current = current[key];
+  	  			return isThere(current, value);
+  	 }
+ 	  if (current[key] == value)  sol.push(true);
+ 	  sol.push(false);
+  }
+  return sol.includes(true);		
+
 };
+
+
+
+
+
 module.exports = { producto, isThere };
