@@ -1,3 +1,4 @@
+const { Queue } = require("../estructuras");
 // EJERCICIO 6
 // Implementar la función controlAcces: a partir de una Queue que va a recibir como paráemtro que tiene
 // en cada posición un objeto que va a representar a una persona y tiene la siguiente forma:
@@ -19,10 +20,35 @@
 
 var controlAcces = function(queue, event){
     // Tu código aca:
+    let tickPass = [], ingresan = [];
 
+    for (let i = 0; i < queue.array.length; i++) {
+    	if (queue.array[i].age >= 18 && 
+    		queue.array[i].ticket.event ==  event &&
+    		!tickPass.includes(queue.array[i].ticket.number) ) {
+    		ingresan.push(queue.array[i].fullname);
+    		tickPass.push(queue.array[i].ticket.number);
+    	}
+    };
+
+    var newQueue = new Queue();
+
+   	for (let i = 0; i < queue.array.length; i++) {
+   		if (ingresan.includes(queue.array[i].fullname)) {
+   			newQueue.enqueue(queue.array[i])
+   		}
+   	};  
+   while (queue.size() > 0) {
+     queue.dequeue()
+   };
+   queue = newQueue;
+console.log(queue)
+   return ingresan;
   };
       
   
+
+
 
   module.exports = {
     controlAcces,

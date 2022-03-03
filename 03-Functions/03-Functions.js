@@ -8,7 +8,14 @@ function timeConversion(time){
   let arrtime = time.split(':').map((x)=> parseInt(x)); 
 
   if (arrtime[0] > 23 || arrtime[1] > 59 || arrtime[2] > 59) return false;
-  
+/*
+  let [hours, minutes, seconds] = time.split(":");
+  let ampm = seconds[2]+seconds[3];
+  seconds = seconds[0]+seconds[1];
+  if (ampm === "AM") hours = (hours==="12") ? "00": hours;       
+  hours = (hours === "12") ? hours: parseInt(hours)+12; 
+  return `${hours}:${minutes}:${seconds}`;
+*/  
   if (/PM/.test(time) && arrtime[0] !== 12) arrtime[0] += 12; 
 
   if (/AM/.test(time) && arrtime[0] == 12) arrtime[0] -= 12;
