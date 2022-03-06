@@ -38,11 +38,8 @@ var controlAcces = function(queue, event){
    			newQueue.enqueue(queue.array[i])
    		}
    	};  
-   while (queue.size() > 0) {
-     queue.dequeue()
-   };
-   queue = newQueue;
-console.log(queue)
+    queue = newQueue;
+
    return ingresan;
   };
       

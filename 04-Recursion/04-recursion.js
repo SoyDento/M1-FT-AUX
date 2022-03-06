@@ -1,16 +1,16 @@
+
 // Usando la recursion calcular el producto de todos los numeros de dado arreglo
 // ej:
 // producto([1, 2, 5]) devuelve 10
 // producto([7, 2, 5]) devuelve 70
-const producto = function (array, count = 1) {
+const producto = function (array) {
   //escribe aqui tu codigo  
-  if (array.length > 0) {
-
-  		count *= array[0];
-  		array.shift();
-  		return producto(array, count);
+  if (array.length === 0) {
+    return 1;  
+  } else {   		
+  	return array.shift() * producto(array);
   };
-  return count;
+
 };
 
 // Dado un objeto con objetos anidados utilizar la recursión para crear una función
@@ -35,15 +35,11 @@ const isThere = function (obj, value) {
   
   let current = obj;
    	
-  for (let key in current) {
-  	 if (typeof current[key] == 'object'){
-  	  			current = current[key];
-  	  			return isThere(current, value);
-  	 }
- 	  if (current[key] == value)  sol.push(true);
- 	  sol.push(false);
-  }
-  return sol.includes(true);		
+  for (let key in obj) {
+  	 if (typeof obj[key] == 'object') return isThere(obj[key], value);
+  	 if (obj[key] == value)  return true;
+ 	   };
+  return false;		
 
 };
 

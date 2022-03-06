@@ -17,8 +17,29 @@ const { Stack, Queue } = require("../estructuras")
 
 function efectoEspejo(str){  
 //tu codigo aqui
+let pila = new Stack;
 
+for (var i = 0; i < str.length; i++) {	
+	pila.push(str[i]); 
+};
+let str2 = '';
 
+for (var i = 0; i < str.length; i++) {
+	str2 += pila.pop();
+};
+let arr = str2.split(' ');
+
+for (var i = 0; i < arr.length; i++) {
+	pila.push(arr[i]);
+};
+let arr2 = [];
+
+for (var i = 0; i < arr.length; i++) {
+	arr2.push(pila.pop());
+};
+
+return arr2.join(' '); 
+ 
 };
 
 
