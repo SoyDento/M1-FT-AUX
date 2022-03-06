@@ -28,34 +28,25 @@ LinkedList.prototype.orderList = function () {
     // Tu código aca:
     if (!this.head) return null;
 
-    if (head.value < head.next.value) {
+    var current = this.head;
 
-      if (head.next.next) {
-              let aux = head.next.next;
-              let aux2 = head;
-              head = head.next;
-              head.next = aux2;
-              head.next.next = aux;
-          }
+    if (this.head.value < this.head.next.value) {
+        let aux = this.head.next.next
+        this.head = this.head.next;
+        this.head.next = current;
+        this.head.next.next = aux;
     };
 
-    let current = this.head;
-
-    while (current) {
-      if (current.value < current.next.value) {
-
-          if (current.next.next) {
-              let aux = current.next.next;
-              let aux2 = current;
-              current = current.next;
-              current.next = aux2;
-              current.next.next = aux;
-          }
-      }
-      current = current.next;
+    while (current.next) {
+        if (current.next.value < current.next.next.value) {
+            var aux = current.next.next.next;
+            var aux2 = current.next;
+            current.next.next = current.next;
+            current.next.next.next = aux;
+      };
+        current.next = current.next.next;
     }
-
-  };
+ };
 
 
   //agregar el metodo insert al prototipo de LinkedList.
