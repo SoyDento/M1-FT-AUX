@@ -40,7 +40,7 @@ LinkedList.prototype.orderList = function () {
     while (current.next) {
         if (current.next.value < current.next.next.value) {
             var aux = current.next.next.next;
-            var aux2 = current.next;
+            var aux2 = current.next.next;
             current.next.next = current.next;
             current.next.next.next = aux;
       };

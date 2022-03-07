@@ -21,7 +21,19 @@ const { Queue } = require("../estructuras");
 var controlAcces = function(queue, event){
     // Tu código aca:
     let tickPass = [], ingresan = [];
-
+/*
+    while(queue.size()){
+    let subject= queue.dequeue();
+    if(
+      subject.age>=18 &&
+      subject.ticket.event=== event &&
+      !acc.includes(subject.ticket.number)
+      ){
+        tickPass.push(subject.ticket.number)
+      ingresan.push(subject.fullname)
+    }
+  };
+*/
     for (let i = 0; i < queue.array.length; i++) {
     	if (queue.array[i].age >= 18 && 
     		queue.array[i].ticket.event ==  event &&

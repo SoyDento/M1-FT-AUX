@@ -44,17 +44,19 @@ function selectionSort(array) {
   // el array recibido como parámetro utilizando dos arreglos
   // Devolver el array ordenado resultante
   // Tu código:
-  for (var i = 0; i < array.length-1; i++) {
-    var min = i;
-
-    for (var j = i + i; j < array.length; j++) {
-      if (array[j] < array[min]) min = j;
-    };
-
-    if ( i !== min ) {      
-      [array[i] = array[min]] = [array[min] = array[i]];
+  for(let j = 0; j<array.length-1; j++){
+    let min = j;
+    for(let i = j+1; i<array.length; i++){
+      if(array[i] < array[min]){
+        min = i;
+      }
     }
-  };
+    if(j!==min){
+      let aux = array[j]; 
+      array[j] = array[min];
+      array[min] = aux;
+    }
+  }
   return array;
 };
 
