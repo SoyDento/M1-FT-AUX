@@ -1,9 +1,10 @@
+
 const { LinkedList, Node } = require("../estructuras")
   //agregar el metodo size al prototipo de LinkedList.
   // Este metodo deberia retornar la cantidad de elementos de la lista
   LinkedList.prototype.size = function(){
 
-    let count = 0;
+ /*   let count = 0;
 
     if (!this.head) return count;
       
@@ -13,8 +14,9 @@ const { LinkedList, Node } = require("../estructuras")
       count += 1;
       pointer = pointer.next;
     };
-
     return count;
+
+   */ return this.len;
   }
 
 
@@ -24,29 +26,30 @@ const { LinkedList, Node } = require("../estructuras")
 //     lista.orderList();
 //     Ahora la lista quedaría: Head --> [5] --> [4] --> [1]
 // ACLARACIÓN: Se debe ordenar la lista original y no una nueva.
-LinkedList.prototype.orderList = function () {
-    // Tu código aca:
-    if (!this.head) return null;
+LinkedList.prototype.orderList = function (arr = []) {
+  
+  this.recorrer((x)=> arr.push(x));
 
-    var current = this.head;
+  arr.sort((a,b)=> b - a);
 
-    if (this.head.value < this.head.next.value) {
-        let aux = this.head.next.next
-        this.head = this.head.next;
-        this.head.next = current;
-        this.head.next.next = aux;
-    };
+  this.head = null;
 
-    while (current.next) {
-        if (current.next.value < current.next.next.value) {
-            var aux = current.next.next.next;
-            var aux2 = current.next.next;
-            current.next.next = current.next;
-            current.next.next.next = aux;
-      };
-        current.next = current.next.next;
+  arr.forEach((x)=> this.add(x))
+
+};
+
+ LinkedList.prototype.recorrer = function(cb) {
+    
+    if(!this.head) return null;
+    
+    var nodoActual = this.head;
+  
+    while (nodoActual !== null) {
+      cb(nodoActual.value)
+      nodoActual = nodoActual.next;
     }
- };
+  
+  };
 
 
   //agregar el metodo insert al prototipo de LinkedList.
@@ -58,23 +61,24 @@ LinkedList.prototype.orderList = function () {
 LinkedList.prototype.insert = function(data,pos) {
 
 
-  if (this.len < pos) return this.add(data); 
-  var newNodo = new Node(data);
+  if(this.len< pos) return this.add(data);
 
-  if (pos == 0) {
-    newNodo.next = this.head;
-    this.head = newNodo;
-  };
-  var current = this.head;
+  let newNode= new Node(data);
 
-  while (pos > 0) {
-    pos--;
-    current = current.next;
+  if(pos === 1){
+    newNode.next = this.head;
+    this.head = newNode;
+  }else{
+    let current = this.head;
+    while (pos>1) {
+      pos--;
+      current=current.next;
+    };
+    newNode.next = current.next;
+    current.next = newNode;   
   };
-  newNodo.next = current.next;
-  current.next = newNodo;
-	
-}
+  this.len++;	
+};
   
 
 

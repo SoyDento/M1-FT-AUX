@@ -18,7 +18,24 @@ const { Stack, Queue } = require("../estructuras")
 function efectoEspejo(str){  
 //tu codigo aqui
 let pila = new Stack;
+let str2 = '';
 
+for (let i = 0; i < str.length; i++) {
+    if(str[i] === ' ') {
+        while(pila.size() > 0){
+           str2 += pila.pop(); 
+        }
+        str2 += ' ';
+    }  else {
+        pila.push(str[i]);
+    }
+}
+
+while(pila.size() > 0) str2 += pila.pop();
+
+return str2;
+
+/*
 for (var i = 0; i < str.length; i++) {	
 	pila.push(str[i]); 
 };
@@ -39,6 +56,7 @@ for (var i = 0; i < arr.length; i++) {
 };
 
 return arr2.join(' '); 
+*/
  
 };
 
